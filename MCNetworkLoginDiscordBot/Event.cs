@@ -20,8 +20,8 @@ namespace MCNetworkLoginDiscordBot
 
 		internal static Task MessageReceived(MessageCreateEventArgs e)
 		{
-			if (!e.Message.ToString().StartsWith(Program.Config.CommandPrefix)) return Task.CompletedTask;
-			var message = e.Message.ToString().Substring(Program.Config.CommandPrefix.Length).Split(' ');
+			if (!e.Message.Content.StartsWith(Program.Config.CommandPrefix)) return Task.CompletedTask;
+			var message = e.Message.Content.Substring(Program.Config.CommandPrefix.Length).Split(' ');
 			switch (message[0].ToLower())
 			{
 				case "register":
