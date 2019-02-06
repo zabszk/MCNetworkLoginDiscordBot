@@ -42,6 +42,14 @@ namespace MCNetworkLoginDiscordBot
 							return Task.CompletedTask;
 						}
 
+						if (message[1].Length < 4 || message[1].Length > 16)
+						{
+							e.Guild.GetMemberAsync(e.Author.Id).Result.SendMessageAsync(
+								$"Username must be between 4 and 16 characters.");
+
+							return Task.CompletedTask;
+						}
+
 						var result = HttpQuery.Post(Program.Config.ApiUrl, $"action=register&token={Program.Config.ApiUrl}&DiscordID={e.Author.Id}&username={Base64.Base64Encode(message[1])}");
 						e.Guild.GetMemberAsync(e.Author.Id).Result.SendMessageAsync(
 							$"Request processed, result: " + result + $". To change your password use **IN DIRECT MESSAGE** (!) : {Program.Config.CommandPrefix}passwd YourNewPassword");
