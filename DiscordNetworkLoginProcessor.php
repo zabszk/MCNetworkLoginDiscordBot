@@ -58,7 +58,7 @@ else if ($_POST["action"] == "unregister") {
 	$row = $stmt->fetch();
 	if ($row == null) die ("You don't have any account registered.");
 	
-	$stmt = $pdo->prepare("DELETE FROM `" . $dbtablename . " WHERE `DiscordID` = :discord)");
+	$stmt = $pdo->prepare("DELETE FROM `" . $dbtablename . "` WHERE `DiscordID` = :discord");
 	$stmt->bindValue(':discord', $_POST['DiscordID'], PDO::PARAM_STR);
 	$stmt->execute();
 	
