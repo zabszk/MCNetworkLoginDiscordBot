@@ -42,11 +42,14 @@ if ($_POST["action"] == "register") {
 	if ($row != null) die ('You already have account registered, username: `' . $row['Username'] . '`');
 	
 	$pass = GenerateRandom(24);
+	$options = [
+        'cost' => $bcryptCost
+    ];
 	
 	$stmt = $pdo->prepare("INSERT INTO `" . $dbtablename . "` (`Username`, `DiscordID`, `Password`) VALUES (:username, :discord, :password)");
 	$stmt->bindValue(':username', $_POST['username'], PDO::PARAM_STR);
 	$stmt->bindValue(':discord', $_POST['DiscordID'], PDO::PARAM_STR);
-	$stmt->bindValue(':password', $pass, PDO::PARAM_STR);
+	$stmt->bindValue(':password', password_hash($pass, PASSWORD_BCRYPT, $options), PDO::PARAM_STR);
 	$stmt->execute();
 	
 	echo "User created, password: `" . $pass . "` ";
@@ -79,7 +82,7 @@ else if ($_POST["action"] == "passwd") {
         'cost' => $bcryptCost
     ];
 	
-	$stmt = $pdo->prepare("UPDATE `" . $dbtablename . " SET `Password` = :password WHERE `DiscordID` = :discord)");
+	$stmt = $pdo->prepare("UPDATE `" . $dbtablename . "` SET `Password` = :password WHERE `DiscordID` = :discord)");
 	$stmt->bindValue(':discord', $_POST['DiscordID'], PDO::PARAM_STR);
 	$stmt->bindValue(':password', password_hash($_POST["password"], PASSWORD_BCRYPT, $options), PDO::PARAM_STR);
 	$stmt->execute();
