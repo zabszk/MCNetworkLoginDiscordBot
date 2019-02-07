@@ -74,7 +74,7 @@ namespace MCNetworkLoginDiscordBot
 						}
 
 						var result = HttpQuery.Post(Program.Config.ApiUrl,
-							$"action=register&token={Program.Config.ApiUrl}&DiscordID={e.Author.Id}&username={Base64.Base64Encode(message[1])}");
+							$"action=register&token={Program.Config.ApiToken}&DiscordID={e.Author.Id}&username={Base64.Base64Encode(message[1])}");
 						await e.Guild.GetMemberAsync(e.Author.Id).Result.SendMessageAsync(
 							$"Request processed, result: " + result +
 							$". To change your password use **IN DIRECT MESSAGE** (!) : {Program.Config.CommandPrefix}passwd YourNewPassword");
@@ -94,7 +94,7 @@ namespace MCNetworkLoginDiscordBot
 						}
 
 						var result2 = HttpQuery.Post(Program.Config.ApiUrl,
-							$"action=unregister&token={Program.Config.ApiUrl}&DiscordID={e.Author.Id}");
+							$"action=unregister&token={Program.Config.ApiToken}&DiscordID={e.Author.Id}");
 						await e.Guild.GetMemberAsync(e.Author.Id).Result.SendMessageAsync(
 							$"Request processed, result: " + result2);
 						break;
@@ -125,7 +125,7 @@ namespace MCNetworkLoginDiscordBot
 						}
 
 						var result3 = HttpQuery.Post(Program.Config.ApiUrl,
-							$"action=passwd&token={Program.Config.ApiUrl}&DiscordID={e.Author.Id}&password={Base64.Base64Encode(message[1])}");
+							$"action=passwd&token={Program.Config.ApiToken}&DiscordID={e.Author.Id}&password={Base64.Base64Encode(message[1])}");
 						await e.Channel.SendMessageAsync(
 							$"Request processed, result: " + result3);
 						break;
