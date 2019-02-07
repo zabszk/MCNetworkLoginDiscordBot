@@ -22,5 +22,5 @@ $stmt->execute();
 $row = $stmt->fetch();
 if ($row == null) die ('User not found');
 if (empty($_POST['password'])) die('Permitted to join');
-if (password_verify($row['Password'], $row['password'])) echo 'Authenticated';
+if (password_verify($_POST['password'], $row['Password'])) echo 'Authenticated';
 else echo 'Rejected';

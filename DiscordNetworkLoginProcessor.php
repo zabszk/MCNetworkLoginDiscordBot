@@ -82,7 +82,7 @@ else if ($_POST["action"] == "passwd") {
         'cost' => $bcryptCost
     ];
 	
-	$stmt = $pdo->prepare("UPDATE `" . $dbtablename . "` SET `Password` = :password WHERE `DiscordID` = :discord)");
+	$stmt = $pdo->prepare("UPDATE `" . $dbtablename . "` SET `Password` = :password WHERE `DiscordID` = :discord");
 	$stmt->bindValue(':discord', $_POST['DiscordID'], PDO::PARAM_STR);
 	$stmt->bindValue(':password', password_hash($_POST["password"], PASSWORD_BCRYPT, $options), PDO::PARAM_STR);
 	$stmt->execute();
