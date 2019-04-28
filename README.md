@@ -18,3 +18,7 @@ WebAPI written in PHP.
 # WebAPI files
 * authenticator.php - used by the minecraft plugin for password verification
 * DiscordNetworkLoginProcessor.php - used by this bot for accounts management
+
+# 3rd party libraries
+
+* DSharpPlus (https://github.com/DSharpPlus/DSharpPlus) created by Mike Santiago and DSharpPlus Development Team licensed under The MIT License. License text location: https://github.com/DSharpPlus/DSharpPlus/blob/master/LICENSE
